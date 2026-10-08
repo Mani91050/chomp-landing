@@ -1,0 +1,134 @@
+.section {
+  background: var(--cream);
+  border-top: 2px solid var(--ink);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.rail {
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mail {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mail:hover {
+  color: var(--pink);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.itemOpen {
+  box-shadow: 0 16px 0 -6px var(--ink);
+  transform: translateY(-2px);
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.35rem;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: clamp(0.98rem, 1.6vw, 1.1rem);
+  line-height: 1.25;
+}
+
+.plus {
+  position: relative;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  transition: background 0.2s ease, transform 0.3s ease;
+}
+
+.plus::before,
+.plus::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13px;
+  height: 2.4px;
+  background: var(--ink);
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease, background 0.2s ease;
+}
+
+.plus::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.itemOpen .plus {
+  background: var(--pink);
+  transform: rotate(180deg);
+}
+
+.itemOpen .plus::before,
+.itemOpen .plus::after {
+  background: #fff;
+}
+
+.itemOpen .plus::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.panel {
+  padding: 0 1.35rem 1.35rem;
+  animation: faq-in 0.3s ease;
+}
+
+.panel p {
+  color: var(--ink-mute);
+  max-width: 62ch;
+}
+
+@keyframes faq-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .rail {
+    position: static;
+  }
+}

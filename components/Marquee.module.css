@@ -1,0 +1,50 @@
+.marquee {
+  background: var(--ink);
+  color: #fff;
+  border-block: 2px solid var(--ink);
+  overflow: hidden;
+  padding-block: 0.9rem;
+}
+
+.ink {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 32s linear infinite;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+.strip {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding-inline: 0.875rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.star {
+  color: var(--pink);
+  font-size: 0.85em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

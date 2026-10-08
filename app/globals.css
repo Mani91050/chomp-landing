@@ -1,0 +1,355 @@
+/* ==========================================================================
+   CHOMP — design system
+   Tokens → reset → typography → shared components
+   ========================================================================== */
+
+:root {
+  /* palette */
+  --ink: #0c0a1a;
+  --ink-soft: #191531;
+  --ink-mute: #5b5573;
+  --paper: #ffffff;
+  --cream: #f7f2ea;
+  --pink: #ff2e88;
+  --violet: #7c3aed;
+  --blue: #2f6bff;
+  --mint: #00d0a0;
+  --gold: #ffb020;
+  --line: rgba(12, 10, 26, 0.12);
+  --line-strong: rgba(12, 10, 26, 0.9);
+
+  /* type */
+  --font-display: 'Archivo Black', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* shape */
+  --radius-sm: 12px;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* elevation */
+  --shadow-pop: 0 8px 0 rgba(12, 10, 26, 1);
+  --shadow-pop-hover: 0 12px 0 rgba(12, 10, 26, 1);
+  --shadow-soft: 0 30px 70px -30px rgba(12, 10, 26, 0.45);
+  --shadow-card: 0 18px 40px -24px rgba(12, 10, 26, 0.5);
+
+  /* layout */
+  --container: 1180px;
+  --gutter: 1.25rem;
+  --section-y: clamp(4.5rem, 9vw, 8rem);
+}
+
+/* ---------------------------------- reset --------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+::selection {
+  background: var(--pink);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ------------------------------- typography ------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.75rem, 7.5vw, 5.25rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  line-height: 1.15;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.lead {
+  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+  color: var(--ink-mute);
+  max-width: 54ch;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--pink);
+}
+
+/* --------------------------------- layout --------------------------------- */
+.container {
+  width: min(100% - (var(--gutter) * 2), var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 62ch;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section[id],
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+/* --------------------------------- buttons -------------------------------- */
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-pop);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-pop-hover);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 0 rgba(12, 10, 26, 1);
+}
+
+.btn--pink {
+  --btn-bg: var(--pink);
+}
+
+.btn--mint {
+  --btn-bg: var(--mint);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  box-shadow: none;
+  border-color: var(--ink);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--ink);
+  --btn-fg: #fff;
+  box-shadow: none;
+  transform: translateY(-3px);
+}
+
+.btn--sm {
+  padding: 0.6rem 1rem;
+  font-size: 0.86rem;
+  box-shadow: 0 5px 0 rgba(12, 10, 26, 1);
+}
+
+.btn--lg {
+  padding: 1.1rem 1.9rem;
+  font-size: 1.05rem;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* ---------------------------------- cards --------------------------------- */
+.card {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ------------------------------ scroll reveal ----------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* -------------------------------- utilities ------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 200;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ------------------------------- keyframes -------------------------------- */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --------------------------- reduced motion mode -------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
