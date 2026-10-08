@@ -19,7 +19,7 @@ const body = Inter({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://chomp-demo.vercel.app'),
+  metadataBase: new URL('https://chomp-landing.vercel.app'),
   title: {
     default: 'CHOMP — Chocolate That Bites Back',
     template: '%s · CHOMP',
